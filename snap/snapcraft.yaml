@@ -1,0 +1,74 @@
+name: lbry
+version: 0.10.0rc6
+summary: LBRY is a fully decentralized, open-source protocol
+description: |
+  LBRY is a fully decentralized, open-source protocol
+  facilitating the discovery, access,
+  and (sometimes) purchase of data.
+grade: stable
+confinement: strict
+
+apps:
+  lbry:
+    command: desktop-launch $SNAP/lbry.wrapper
+    plugs:
+     - browser-support
+     - network
+     - network-bind
+     - unity7
+     - gsettings
+     # - home
+     - pulseaudio
+     - opengl
+    desktop: lbry.desktop
+
+parts:
+  lbry:
+    after:
+      - deps
+      - desktop-integration
+      - launcher
+      - desktop
+      - node
+    source: https://github.com/lbryio/lbry-app
+    plugin: nil
+    source-type: git
+    source-tag: v0.10.0rc6
+    build: |
+      ./build.sh
+      cd app && npm i electron
+    install: |
+      mv -v app $SNAPCRAFT_PART_INSTALL
+
+  node:
+    plugin: nodejs
+    node-engine: 6.10.2
+
+  desktop:
+    source: snap/gui
+    plugin: dump
+
+  deps:
+    plugin: nil
+    stage-packages:
+      - libgconf-2-4
+      - libnss3
+      - libxss1
+      - fontconfig-config
+      #stuff that seems to be missing in cleanbuild
+      - libx11-xcb1
+      - libxtst6
+      - libasound2
+
+  desktop-integration:
+    plugin: nil
+    stage-packages:
+      - libappindicator1
+      - libdbusmenu-glib4
+      - libnotify4
+      - libunity9
+
+  launcher:
+    source: snap/scripts
+    plugin: dump
+    after: [desktop-glib-only]
