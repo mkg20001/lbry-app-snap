@@ -1,5 +1,5 @@
 name: lbry
-version: 0.10.0rc6
+version: 0.10.0rc7
 summary: LBRY is a fully decentralized, open-source protocol
 description: |
   LBRY is a fully decentralized, open-source protocol
@@ -33,7 +33,7 @@ parts:
     source: https://github.com/lbryio/lbry-app
     plugin: nil
     source-type: git
-    source-tag: v0.10.0rc6
+    source-tag: v0.10.0rc7
     build: |
       ./build.sh
       cd app && npm i electron
