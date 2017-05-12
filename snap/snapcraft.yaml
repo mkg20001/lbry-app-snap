@@ -33,7 +33,7 @@ parts:
     source: https://github.com/lbryio/lbry-app
     plugin: nil
     source-type: git
-    source-tag: v0.10.0rc7
+    source-tag: v0.10.0
     build: |
       ./build.sh
       cd app && npm i electron
