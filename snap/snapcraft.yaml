@@ -39,6 +39,8 @@ parts:
       cd app && npm i electron
     install: |
       mv -v app $SNAPCRAFT_PART_INSTALL
+    build-packages:
+      - unzip
 
   node:
     plugin: nodejs
