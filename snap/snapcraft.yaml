@@ -34,7 +34,7 @@ parts:
     plugin: nil
     source-type: git
     source-tag: v0.13.0
-    build: npm i -g yarn && ./build.sh && cd app && yarn add electron #&& ../node_modules/.bin/electron-rebuild .
+    build: npm i -g yarn && ./build.sh && cd app && yarn add electron && (node_modules/.bin/electron-rebuild . || node_modules/.bin/electron-rebuild .)
     install: mv -v app $SNAPCRAFT_PART_INSTALL
     build-packages:
       - unzip
