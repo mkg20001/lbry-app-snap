@@ -33,16 +33,17 @@ parts:
     source: https://github.com/lbryio/lbry-app
     plugin: nil
     source-type: git
-    source-tag: v0.13.0
+    source-tag: v0.14.3
     build: npm i -g yarn && ./build.sh && cd app && yarn add electron && (node_modules/.bin/electron-rebuild . || node_modules/.bin/electron-rebuild .)
     install: mv -v app $SNAPCRAFT_PART_INSTALL
     build-packages:
       - unzip
       - libsecret-1-dev
+      - wget
 
   node:
     plugin: nodejs
-    node-engine: 8.1.3
+    node-engine: 8.3.0
 
   desktop:
     source: snap/gui
